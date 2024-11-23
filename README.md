@@ -243,7 +243,9 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     ```bash
     python manage.py runserver
 
-28. Verificamos la nueva aplicacion 127.0.1:8000/app2
+28. Verificamos la nueva aplicacion 
+    ```bash
+    127.0.1:8000/app2
 
         
 
