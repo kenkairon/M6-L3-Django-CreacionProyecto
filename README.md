@@ -210,4 +210,29 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
         productos = Producto.objects.all()
         return render(request, 'productos.html', {'productos': productos})
 
+22. Escribimos comandos de migracion a la base de datos
+
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+
+23. Vamos a Cargar datos en la Bases de Datos
+    ```bash
+    python manage.py shell
+
+
+from app2.models import Producto
+    
+# Crear productos
+Producto.objects.create(nombre="Mouse", precio=25.99, descripcion="Mouse inalámbrico")
+Producto.objects.create(nombre="Teclado", precio=45.00, descripcion="Teclado mecánico")
+
+# Verificar que los datos se insertaron correctamente
+productos = Producto.objects.all()
+for producto in productos:
+    print(producto.nombre, producto.precio, producto.descripcion)
+
+exit()
+    
+
 
