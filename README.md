@@ -143,3 +143,71 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     python manage.py runserver
 
 16. Comprobamos en las paginas las rutas http://127.0.0.1:8000/app1/
+
+17. Generamos la carpeta templates en la app2 y creamos el archivo productos.html
+    ```bash
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Lista de Productos</title>
+    </head>
+
+    <body>
+        <h1>Productos Disponibles</h1>
+        <ul>
+            {% for producto in productos %}
+            <li>
+                <strong>{{ producto.nombre }}</strong> - ${{ producto.precio }}<br>
+                {{ producto.descripcion }}
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+
+    </html>
+18. en la leccion3/urls.py incluimos el path('app2/', include('app2.urls))
+    
+    ```bash
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('app1/',include('app1.urls')),
+        path('app2/',include('app2.urls')),
+    ]
+19. en app2 creo un archivo urls.py
+    ```bash
+    from django.urls import path
+    from app2 import views
+
+
+    urlpatterns = [
+        path('',views.productos, name='producto'),
+    ]
+
+20. Creamos el modelo en app2/models.py
+
+    ```bash
+    from django.db import models
+
+    class Producto(models.Model):
+        nombre = models.CharField(max_length=100)
+        precio = models.DecimalField(max_digits=10, decimal_places=2)
+        descripcion = models.TextField()
+
+        def __str__(self):
+            return self.nombre
+
+21. Configuramos la vista y agregamos el modelo en app2/views.py
+
+    ```bash
+    from django.shortcuts import render
+    from .models import Producto
+
+    def productos(request):
+        productos = Producto.objects.all()
+        return render(request, 'productos.html', {'productos': productos})
+
+
