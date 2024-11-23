@@ -82,3 +82,64 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     'app1',
     'app2',
     ]
+
+10. en app1 creamos una Carpeta llamada templates creamos un archivo llamado index.html app1\templates\index.html
+
+     ```bash
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>Hola</h1>
+    </body>
+
+    </html>
+
+11. en app1/views.py se configura el renderizado de la página index.html
+
+    ```bash
+    from django.shortcuts import render
+
+    def index(request):
+        return render(request, 'index.html')
+
+12. Crear el archivo urls.py en app1 -> app1/urls
+
+    ```bash
+    from django.urls import path
+    from app1 import views
+
+    urlpatterns = [
+        path('',views.index, name='index'),
+    ]
+
+13. Leccion3/urls, le damos la ruta para que conozca app1.urls
+
+    ```bash
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('app1/',include('app1.urls')),
+    
+    ]
+
+14. colocamos los siguientes comandos
+    
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+
+15. Hacemos Correr en el Servidor nuestra Aplicación
+
+    ```bash
+    python manage.py runserver
+
+16. Comprobamos en las paginas las rutas http://127.0.0.1:8000/app1/
