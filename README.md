@@ -216,7 +216,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     python manage.py makemigrations
     python manage.py migrate
 
-23. Ingresando el comando en la shell
+23. Ingresando el comando en la shell con el objetivo de Cargar datos en la base de datos con los siguientes códigos
     ```bash
     python manage.py shell
 
@@ -234,7 +234,17 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     for producto in productos:
         print(producto.nombre, producto.precio, producto.descripcion)
 
+    # para salir de la shell
     exit()
+
+26. Nos fijamos en db.sqlite3 para ver si los datos estan en la base de datos
+
+27. Corremos el servidor 
+    ```bash
+    python manage.py runserver
+
+28. Verificamos la nueva aplicacion 127.0.1:8000/app2
+
         
 
 
