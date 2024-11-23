@@ -327,51 +327,51 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     http://127.0.0.1:8000/app1/
     http://127.0.0.1:8000/app2/
 
-37. Vamos a cambiar el templates/include/base.html
-  ```bash
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light text-dark">
-    
-    <!-- include Header.html -->
-    {% include 'include/header.html' %}
+37. Vamos a cambiar el templates/include/base.html y agregamos el cdn de Bootsrap5.3
+    ```bash
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light text-dark">
+        
+        <!-- include Header.html -->
+        {% include 'include/header.html' %}
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-    
+        
 
-    <!-- include Footer.html -->
-    {% include 'include/footer.html' %}
+        <!-- include Footer.html -->
+        {% include 'include/footer.html' %}
 
-    <!-- Bootstrap JS (opcional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <!-- Bootstrap JS (opcional) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
 
 38. Agregamos un header en el templates/include/header.html
- ```bash
-<div class="container mt-5">
-    <header class="text-center mb-4">
-        <h1 class="display-4">Falabella</h1>
-        <p class="lead">Email: <a href="mailto:falabella@example.com"
-                class="text-decoration-none">falabella@example.com</a></p>
-        <p class="lead">Teléfono: <a href="tel:+56123456789" class="text-decoration-none">+56 123 456 789</a></p>
-        <a href="/app1/">Inicio</a>
-        <a href="/app2/">Productos</a>
-    </header>
-</div>
+    ```bash
+    <div class="container mt-5">
+        <header class="text-center mb-4">
+            <h1 class="display-4">Falabella</h1>
+            <p class="lead">Email: <a href="mailto:falabella@example.com"
+                    class="text-decoration-none">falabella@example.com</a></p>
+            <p class="lead">Teléfono: <a href="tel:+56123456789" class="text-decoration-none">+56 123 456 789</a></p>
+            <a href="/app1/">Inicio</a>
+            <a href="/app2/">Productos</a>
+        </header>
+    </div>
 
 39. Agregamos un footer en el templates/include/footer.html
-```bash
-<footer>este es un footer</footer>
+    ```bash
+    <footer>este es un footer</footer>
 
 
 
