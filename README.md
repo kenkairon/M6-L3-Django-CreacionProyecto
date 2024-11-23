@@ -217,17 +217,21 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     python manage.py migrate
 
 23. Vamos a Cargar datos en la Bases de Datos
-    ```bash
+     ```bash
     python manage.py shell
 
-
-from app2.models import Producto
     
-# Crear productos
+### Importar y creación de productos
+ ```bash
+from app2.models import Producto
+
+Producto.objects.create(nombre="Laptop", precio=1200.00, descripcion="Laptop de alta gama")
 Producto.objects.create(nombre="Mouse", precio=25.99, descripcion="Mouse inalámbrico")
 Producto.objects.create(nombre="Teclado", precio=45.00, descripcion="Teclado mecánico")
 
-# Verificar que los datos se insertaron correctamente
+### Verificar que los datos se insertaron correctamente
+```bash
+
 productos = Producto.objects.all()
 for producto in productos:
     print(producto.nombre, producto.precio, producto.descripcion)
