@@ -82,6 +82,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     'app1',
     'app2',
     ]
+### creación de vistas y modelos
 
 10. en app1 creamos una Carpeta llamada templates creamos un archivo llamado index.html app1\templates\index.html
 
@@ -243,9 +244,136 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     ```bash
     python manage.py runserver
 
-28. Verificamos la nueva aplicacion 
+28. Verificamos la nueva aplicación app2, que debe contener los modelos y Bd
     ```bash
     127.0.1:8000/app2/
+
+29. En leccion3 vamos a crear la carpeta templates en la principal leccion3/templates, y si es por consola 
+    ```bash
+    mkdir templates
+
+30. Dentro de la Carpeta que creamos templates vamos agregar include leccion3/templates/include y si es por consola
+    ```bash
+    cd templates
+    mkdir include
+
+31. Creamos base.html En la carpeta templates/include/base.html
+    ```bash
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+
+    </html>
+
+32. Cambiamos en app1/templates/index.html y colocamos esto:
+    ```bash
+    {% extends 'base.html' %}
+
+    {% block title%}index{% endblock%}
+
+    {% block content %}
+    <h1>Pagina Inicial</h1>
+    {% endblock%}
+
+33. Cambiamos también app2/templates/producto.html y colocamos esto:
+    ```bash
+    {% extends 'base.html' %}
+
+    {% block title%}Productos{% enblock%}
+
+    {% block content %}
+    <h1>Productos Disponibles</h1>
+    <ul>
+        {% for producto in productos %}
+        <li>
+            <strong>{{ producto.nombre }}</strong> - ${{ producto.precio }}<br>
+            {{ producto.descripcion }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock%}
+
+34. Vamos a leccion3/setting.py en el proyecto y agregamos  'DIRS': [BASE_DIR, 'templates'],
+    ```bash
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [BASE_DIR, 'templates'],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+35. Si no esta corriendo el Servidor activelo
+    ```bash
+    python manage.py runserver
+
+36. Verificamos las paginas 
+    ```bash
+    http://127.0.0.1:8000/app1/
+    http://127.0.0.1:8000/app2/
+
+37. Vamos a cambiar el templates/include/base.html
+  ```bash
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light text-dark">
+    
+    <!-- include Header.html -->
+    {% include 'include/header.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    
+
+    <!-- include Footer.html -->
+    {% include 'include/footer.html' %}
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+38. Agregamos un header en el templates/include/header.html
+ ```bash
+<div class="container mt-5">
+    <header class="text-center mb-4">
+        <h1 class="display-4">Falabella</h1>
+        <p class="lead">Email: <a href="mailto:falabella@example.com"
+                class="text-decoration-none">falabella@example.com</a></p>
+        <p class="lead">Teléfono: <a href="tel:+56123456789" class="text-decoration-none">+56 123 456 789</a></p>
+        <a href="/app1/">Inicio</a>
+        <a href="/app2/">Productos</a>
+    </header>
+</div>
+
+39. Agregamos un footer en el templates/include/footer.html
+```bash
+<footer>este es un footer</footer>
+
+
 
         
 
