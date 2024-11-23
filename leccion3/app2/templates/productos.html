@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Lista de Productos</title>
-</head>
+{% block title %}producto{% endblock %}
 
-<body>
-    <h1>Productos Disponibles</h1>
-    <ul>
-        {% for producto in productos %}
-        <li>
-            <strong>{{ producto.nombre }}</strong> - ${{ producto.precio }}<br>
-            {{ producto.descripcion }}
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+{% block content %}
+<h1>Productos Disponibles</h1>
+<ul>
+    {% for producto in productos %}
+    <li>
+        <strong>{{ producto.nombre }}</strong> - ${{ producto.precio }}<br>
+        {{ producto.descripcion }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock%}
