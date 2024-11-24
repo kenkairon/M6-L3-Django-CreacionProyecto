@@ -465,16 +465,3 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
 
     def vistas2(request):
         return render(request, 'app3/vistas2.html')
-
-
-
-
-
-
-
-
-
-
-        
-
-
