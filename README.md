@@ -12,8 +12,8 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
   - [Configuración del Proyecto](#configuración-del-proyecto)
   - [Creación de Vistas y Modelos](#creación-de-vistas-y-modelos)
   - [Integración de Bootstrap 5 por CDN](#integración-de-bootstrap-5-por-CDN)
-- [Credenciales Sugeridas](#credenciales-sugeridas)
-- [Licencia](#licencia)
+  - [Creación del SuperUsuario Y Configuraciones](#Creación-del-SuperUsuario-Y-Configuraciones)
+
 
 ---
 
@@ -509,6 +509,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     ```bash
     python manage.py runserver
 
+## Creación del SuperUsuario Y Configuraciones
 55. Creamos un superusuario 
     ```bash
     python manage.py createsuperuser
