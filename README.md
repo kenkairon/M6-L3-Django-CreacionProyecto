@@ -327,7 +327,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     http://127.0.0.1:8000/app1/
     http://127.0.0.1:8000/app2/
 
-37. Vamos a cambiar el templates/include/base.html y agregamos el cdn de Bootsrap5.3
+37. Vamos a cambiar el templates/include/base.html y agregamos el cdn de Bootsrap5.3 e incluimos header y footer
     ```bash
     <!DOCTYPE html>
     <html lang="es">
@@ -372,6 +372,106 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
 39. Agregamos un footer en el templates/include/footer.html
     ```bash
     <footer>este es un footer</footer>
+
+40. Creamos Otra aplicacion la app3
+    ```bash
+    python manage.py startapp app3 
+
+41. al crear app3 tenemos que ingresar la ruta en el proyecto leccion3/urls. y agregamos path('app3/',include('app3.urls')),
+    ```bash
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('app1/',include('app1.urls')),
+        path('app2/',include('app2.urls')),
+        path('app3/',include('app3.urls')),
+    ]
+42. Agregamos en la app3 agregamos templates/vista1.html 
+    ```bash
+    {% extends 'base.html' %}
+
+    {% block title %}Vista 1 App3{% endblock %}
+
+    {% block content %}
+    <h1>Soy la vista 1 de la App3</h1>
+    {% endblock %}
+
+43. Agregamos en la app3 agregamos templates/vista2.html
+     ```bash
+    {% extends 'base.html' %}
+
+    {% block title %}Vista 2 App3{% endblock %}
+
+    {% block content %}
+    <h1>Soy la vista 2 de la App3</h1>
+    {% endblock %}
+44. Vamos a cambiar los templates de todas las aplicaciones agregando el nombre de la aplicación ejemplos para hacer
+    ```bash
+    templates\app1\index.html
+    templates\app2\productos.html
+    templates\app3\vista1.html
+    templates\app3\vista2.html
+
+45. Configure la views.py en app3 -> renderize las paginas que se hizo en la vista1.html y vista2.html
+    ```bash
+    from django.shortcuts import render
+
+    def vistas1(request):
+        return render(request, 'vistas1.html')
+
+    def vistas2(request):
+        return render(request, 'vistas2.html')
+
+46. Crea en app3/urls.py y configura la urls.
+      ```bash
+    from django.urls import path
+    from app3 import views
+
+    urlpatterns = [
+        path('',views.vistas1, name='vista1'),
+        path('',views.vistas2, name='vista2'),
+    ]
+
+47. Si no esta corriendo el Servidor activelo
+    ```bash
+    python manage.py runserver
+
+48. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app1/views.py
+    ```bash
+    from django.shortcuts import render
+
+    # Create your views here.
+    def index(request):
+        return render(request, 'app1/index.html')
+
+49. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app2/views.py 
+    ```bash
+    from django.shortcuts import render
+    from .models import Producto
+
+    def productos(request):
+        productos = Producto.objects.all()
+        return render(request, 'app2/productos.html', {'productos': productos})
+
+
+49. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app3/views.py 
+    ```bash
+    from django.shortcuts import render
+
+    def vistas1(request):
+        return render(request, 'app3/vistas1.html')
+
+    def vistas2(request):
+        return render(request, 'app3/vistas2.html')
+
+
+
+
+
+
+
 
 
 
