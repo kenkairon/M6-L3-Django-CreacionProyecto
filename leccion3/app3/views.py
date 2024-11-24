@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
-def vistas1(request):
-    return render(request, 'app3/vistas1.html')
+# Create your views here.
+def vista1(request):
+    return render(request, 'app3/vista1.html')
 
-def vistas2(request):
-    return render(request, 'app3/vistas2.html')
+def vista2(request):
+    return render(request, 'app3/vista2.html')

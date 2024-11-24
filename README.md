@@ -378,8 +378,21 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
 40. Creamos Otra aplicacion la app3
     ```bash
     python manage.py startapp app3 
-
-41. al crear app3 tenemos que ingresar la ruta en el proyecto leccion3/urls. y agregamos path('app3/',include('app3.urls')),
+    
+41. En Leccion3/setting.py agregamos la aplicación app3  
+    ```bash
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'app1',
+        'app2',
+        'app3',
+    ]
+42. al crear app3 tenemos que ingresar la ruta en el proyecto leccion3/urls. y agregamos path('app3/',include('app3.urls')),
     ```bash
     from django.contrib import admin
     from django.urls import path, include
@@ -390,7 +403,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
         path('app2/',include('app2.urls')),
         path('app3/',include('app3.urls')),
     ]
-42. Agregamos en la app3 agregamos templates/vista1.html 
+43. Agregamos en la app3 agregamos templates/vista1.html 
     ```bash
     {% extends 'base.html' %}
 
@@ -400,7 +413,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     <h1>Soy la vista 1 de la App3</h1>
     {% endblock %}
 
-43. Agregamos en la app3 agregamos templates/vista2.html
+44. Agregamos en la app3 agregamos templates/vista2.html
      ```bash
     {% extends 'base.html' %}
 
@@ -409,38 +422,38 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     {% block content %}
     <h1>Soy la vista 2 de la App3</h1>
     {% endblock %}
-44. Vamos a cambiar los templates de todas las aplicaciones agregando el nombre de la aplicación ejemplos para hacer
+45. Vamos a cambiar los templates de todas las aplicaciones agregando el nombre de la aplicación ejemplos para hacer
     ```bash
     templates\app1\index.html
     templates\app2\productos.html
     templates\app3\vista1.html
     templates\app3\vista2.html
 
-45. Configure la views.py en app3 -> renderize las paginas que se hizo en la vista1.html y vista2.html
+46. Configure la views.py en app3 -> renderize las paginas que se hizo en la vista1.html y vista2.html
     ```bash
     from django.shortcuts import render
 
-    def vistas1(request):
-        return render(request, 'vistas1.html')
+    def vista1(request):
+        return render(request, 'vista1.html')
 
-    def vistas2(request):
-        return render(request, 'vistas2.html')
+    def vista2(request):
+        return render(request, 'vista2.html')
 
-46. Crea en app3/urls.py y configura la urls.
+47. Crea en app3/urls.py y configura la urls.
       ```bash
     from django.urls import path
     from app3 import views
 
     urlpatterns = [
-        path('',views.vistas1, name='vista1'),
-        path('',views.vistas2, name='vista2'),
+        path('vista1/',views.vista1, name='vista1'),
+        path('vista2/',views.vista2, name='vista2'),
     ]
 
-47. Si no esta corriendo el Servidor activelo
+48. Si no esta corriendo el Servidor activelo
     ```bash
     python manage.py runserver
 
-48. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app1/views.py
+49. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app1/views.py
     ```bash
     from django.shortcuts import render
 
@@ -448,7 +461,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     def index(request):
         return render(request, 'app1/index.html')
 
-49. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app2/views.py 
+50. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app2/views.py 
     ```bash
     from django.shortcuts import render
     from .models import Producto
@@ -458,12 +471,39 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
         return render(request, 'app2/productos.html', {'productos': productos})
 
 
-49. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app3/views.py 
+51. Hay que cambiar en las vistas de todas las aplicaciones app1, app2 y app3 la carpetas de las views EN app3/views.py 
     ```bash
     from django.shortcuts import render
 
     def vistas1(request):
-        return render(request, 'app3/vistas1.html')
+        return render(request, 'app3/vista1.html')
 
     def vistas2(request):
-        return render(request, 'app3/vistas2.html')
+        return render(request, 'app3/vista2.html')
+
+52. Actualizamos el header.html que se encuentra en templates/include/header.html y se agrega app3/vista1 y app3/vista2
+    ```bash
+    <div class="container mt-5">
+        <header class="text-center mb-4">
+            <h1 class="display-4">Falabella</h1>
+            <p class="lead">Email: <a href="mailto:falabella@example.com"
+                    class="text-decoration-none">falabella@example.com</a></p>
+            <p class="lead">Teléfono: <a href="tel:+56123456789" class="text-decoration-none">+56 123 456 789</a></p>
+            <a href="/app1/">Inicio</a>
+            <a href="/app2/">Productos</a>
+            <a href="/app3/vista1/">Vista1</a>
+            <a href="/app3/vista2/">Vista2</a>
+        </header>
+    </div>   
+53. Colocar la ruta vista1 y vista2 en app3/urls.py
+     ```bash
+    from django.urls import path
+    from app3 import views
+
+    urlpatterns = [
+        path('vista1/',views.vista1, name='vista1'),
+        path('vista2/',views.vista2, name='vista2'),
+    ]
+54. Volvemos Activar el Servidor para Ver los Cambios 
+    ```bash
+    python manage.py runserver

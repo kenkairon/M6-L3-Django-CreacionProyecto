@@ -3,6 +3,6 @@ from app3 import views
 
 
 urlpatterns = [
-    path('',views.vistas1, name='vista1'),
-    path('',views.vistas2, name='vista2'),
+    path('vista1/',views.vista1, name='vista1'),
+    path('vista2/',views.vista2, name='vista2'),
 ]
