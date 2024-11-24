@@ -346,9 +346,10 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
         {% include 'include/header.html' %}
 
         {% block content %}
+            <!--dentro del block content se mostrará contenido dinamico -->
+            <!--mostrare index.html - productos.html - vista1.html - vista2.html -->
+            <!--mostrare cada html cuando el usuario lo pida -->
         {% endblock %}
-
-        
 
         <!-- include Footer.html -->
         {% include 'include/footer.html' %}
@@ -507,3 +508,31 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
 54. Volvemos Activar el Servidor para Ver los Cambios 
     ```bash
     python manage.py runserver
+
+55. Creamos un superusuario 
+    ```bash
+    python manage.py createsuperuser
+
+56. Verificamos usuario y contraseña del superuser por motivos de aprendizaje le vamos a dar estos parametros pero que no son seguros
+    ```bash
+    admin
+    admin@gmail.com
+    admin1234
+    y
+
+57. Volvemos Activar el Servidor para Ver los Cambios 
+    ```bash
+    python manage.py runserver
+
+58. Para que el administrador pueda ver las tablas y los registro en la base de datos app2, tiene que ir app2/admin.py
+
+    ```bash
+    from django.contrib import admin
+    from .models import Producto
+    # Register your models here.
+
+    admin.site.register(Producto)
+
+
+
+
