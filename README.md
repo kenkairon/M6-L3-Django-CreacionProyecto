@@ -82,7 +82,7 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     'app1',
     'app2',
     ]
-### creación de vistas y modelos
+## Creación de vistas y modelos
 
 10. en app1 creamos una Carpeta llamada templates creamos un archivo llamado index.html app1\templates\index.html
 
@@ -326,6 +326,8 @@ Este proyecto proporciona una guía paso a paso para crear una aplicación Djang
     ```bash
     http://127.0.0.1:8000/app1/
     http://127.0.0.1:8000/app2/
+
+## Integración de Bootstrap 5 por CDN
 
 37. Vamos a cambiar el templates/include/base.html y agregamos el cdn de Bootsrap5.3 e incluimos header y footer
     ```bash
